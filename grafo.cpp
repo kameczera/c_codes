@@ -5,17 +5,39 @@ class Vertice
 {
 private:
     string nome;
-    int index;
+    int inicio;
+    int termino;
 
 public:
-    Vertice(string nome, int index)
+    Vertice(string nome, int inicio, int termino)
     {
         this->nome = nome;
-        this->index = index;
+        this->inicio = inicio;
+        this->termino = termino;
     }
 
     string getNome(){
         return nome;
+    }
+
+    void setNome(string nome){
+        this->nome = nome;
+    }
+
+    int getInicio(){
+        return inicio;
+    }
+
+    void setInicio(int inicio){
+        this->inicio = inicio;
+    }
+
+    int getTermino(){
+        return termino;
+    }
+
+    void setTermino(int termino){
+        this->termino = termino;
     }
 };
 
@@ -45,26 +67,31 @@ public:
             }
         }
         vertice = (Vertice*)malloc(sizeof(Vertice) * tamanho);
+        vertice[0].setNome("A");
+        vertice[1].setNome("B");
+        vertice[2].setNome("C");
+        vertice[3].setNome("D");
+        vertice[4].setNome("E");
     }
 
-    void addVertice(string nome){
-        if(i < tamanho){
-            Vertice v(nome, i);
-            vertice[i] = v;
+    void addAresta(int i1, int i2){
+        matriz[i1][i2]++;
+        matriz[i2][i1]++;
+    }
+
+    void printMatriz(){
+        for(int i = 0; i < tamanho; i++){
+            cout << vertice[i].getNome() << " ";
+            for(int j = 0; j < tamanho; j++){
+                cout << matriz[i][j] << " ";
+            }
+            cout << "\n";
         }
-    }
-
-    void printVertice(int index){
-        cout << vertice[index].getNome() << " " << i;
-    }
-
-    void addAresta(int i1, int i2, int val){
-        matriz[i1][i2]
     }
 };
 
 int main(){
     Grafo grafo(5);
-    grafo.addVertice("arroz");
-    grafo.printVertice(0);
+    grafo.addAresta(1,2);
+    grafo.printMatriz();
 }
